@@ -35,7 +35,7 @@ class CalendarRequest extends Request {
 	 *
 	 * @return array
 	 */
-	public function rules()
+	public function rules(\Illuminate\Http\Request $request)
 	{
 		// validation rule for create request.
 		if($request->isMethod('POST'))

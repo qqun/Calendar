@@ -17,8 +17,8 @@ class Calendar
      *
      * @author
      **/
-    public function display()
+    public function display($view)
     {
-        return view('calendar::admin.calendar.calendar');
+        return view('calendar::admin.calendar.'. $view);
     }
 }
