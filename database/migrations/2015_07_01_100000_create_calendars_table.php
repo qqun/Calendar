@@ -13,15 +13,19 @@ class CreateCalendarsTable extends Migration {
          public function up()
          {
 
-	    /**
-	     * Table: pages
-	     */
-	       Schema::create('calendars', function($table) {
+            /**
+             * Table: calendars
+             */
+            Schema::create('calendars', function($table) {
                 $table->increments('id')->unsigned();
-                $table->string('name', 50)->nullable();
-                $table->string('slug', 50)->nullable();
-                $table->integer('order')->nullable();
-                $table->boolean('status')->default("1");
+                $table->string('user_id')->nullable();
+                $table->string('category_id')->nullable();
+                $table->dateTime('start')->nullable();
+                $table->dateTime('end')->nullable();
+                $table->string('location')->nullable();
+                $table->string('title')->nullable();
+                $table->string('details')->nullable();
+                $table->string('created_by')->nullable();
                 $table->string('upload_folder', 100)->nullable();
                 $table->softDeletes();
                 $table->nullableTimestamps();
@@ -35,7 +39,7 @@ class CreateCalendarsTable extends Migration {
          */
          public function down()
          {
-	            Schema::drop('calendars');
+                Schema::drop('calendars');
          }
 
 }

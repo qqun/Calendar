@@ -2,6 +2,7 @@
 
 namespace Lavalite\Calendar;
 
+use DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,18 @@ class CalendarTableSeeder extends Seeder
             // Uncomment  and edit this section for entering value to calendar table.
             /*
             array(
-                'name'      => 'Some name',
+               "id"        => "Id",
+               "user_id"        => "User id",
+               "category_id"        => "Category id",
+               "start"        => "Start",
+               "end"        => "End",
+               "location"        => "Location",
+               "title"        => "Title",
+               "details"        => "Details",
+               "created_by"        => "Created by",
+               "created_at"        => "Created at",
+               "updated_at"        => "Updated at",
+               "deleted_at"        => "Deleted at",
             ),
             */
 
