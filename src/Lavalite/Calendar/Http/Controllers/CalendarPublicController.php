@@ -13,7 +13,7 @@ class PublicController extends CMSPublicController
      *
      * @return type
      */
-    public function __construct(\Lavalite\Calendar\Interfaces\CalendarRepositiryInterface $calendar)
+    public function __construct(\Lavalite\Calendar\Interfaces\CalendarRepositoryInterface $calendar)
     {
         $this->model = $calendar;
         parent::__construct();
