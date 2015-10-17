@@ -37,6 +37,9 @@ class CalendarAdminController extends AdminController
     {
         $this->theme->prependTitle(trans('calendar::calendar.names').' :: ');
 
+        $this->theme->asset()->add('fullcalendar',            'packages/fullcalendar/fullcalendar.min.css');
+        $this->theme->asset()->container('extra')->add('fullcalendar',            'packages/fullcalendar/fullcalendar.min.js');
+
         return $this->theme->of('calendar::admin.calendar.index')->render();
     }
 
