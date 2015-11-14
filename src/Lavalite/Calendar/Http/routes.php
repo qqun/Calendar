@@ -1,6 +1,6 @@
 <?php
-Route::group(array('prefix' =>'admin'), function ()
-{
+
+Route::group(['prefix' => 'admin'], function () {
     Route::get('/calendar/calendar/list', 'Lavalite\Calendar\Http\Controllers\CalendarAdminController@lists');
     Route::resource('/calendar/calendar', 'Lavalite\Calendar\Http\Controllers\CalendarAdminController');
 });

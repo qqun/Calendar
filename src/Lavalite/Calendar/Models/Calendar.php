@@ -2,10 +2,9 @@
 
 namespace Lavalite\Calendar\Models;
 
-use Lavalite\Filer\FilerTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Lavalite\Filer\FilerTrait;
 
 class Calendar extends Model
 {
@@ -15,7 +14,7 @@ class Calendar extends Model
     protected $dates = ['deleted_at'];
 
     /**
-     * Initialiaze page modal
+     * Initialiaze page modal.
      *
      * @param $name
      */
@@ -32,10 +31,9 @@ class Calendar extends Model
      */
     public function initialize()
     {
-        $this->fillable             = config('package.calendar.calendar.fillable');
-        $this->uploads              = config('package.calendar.calendar.uploadable');
-        $this->uploadRootFolder     = config('package.calendar.calendar.upload_root_folder');
-        $this->table                = config('package.calendar.calendar.table');
+        $this->fillable = config('package.calendar.calendar.fillable');
+        $this->uploads = config('package.calendar.calendar.uploadable');
+        $this->uploadRootFolder = config('package.calendar.calendar.upload_root_folder');
+        $this->table = config('package.calendar.calendar.table');
     }
-
 }
