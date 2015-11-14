@@ -64,7 +64,7 @@ class CalendarServiceProvider extends ServiceProvider {
      */
     private function publishResources()
     {
-        $this->publishes([__DIR__.'/../../../../config/config.php' => config_path('calendar.php')], 'config');
+        $this->publishes([__DIR__.'/../../../../config/config.php' => config_path('package/calendar.php')], 'config');
 
     }
 

@@ -32,10 +32,10 @@ class Calendar extends Model
      */
     public function initialize()
     {
-        $this->fillable             = config('calendar.calendar.fillable');
-        $this->uploads              = config('calendar.calendar.uploadable');
-        $this->uploadRootFolder     = config('calendar.calendar.upload_root_folder');
-        $this->table                = config('calendar.calendar.table');
+        $this->fillable             = config('package.calendar.calendar.fillable');
+        $this->uploads              = config('package.calendar.calendar.uploadable');
+        $this->uploadRootFolder     = config('package.calendar.calendar.upload_root_folder');
+        $this->table                = config('package.calendar.calendar.table');
     }
 
 }

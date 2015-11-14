@@ -54,7 +54,7 @@ class CalendarAdminController extends AdminController
     {
         $array = $this->model->json();
         foreach ($array as $key => $row) {
-            $array[$key] = array_only($row, config('calendar.calendar.listfields'));
+            $array[$key] = array_only($row, config('package.calendar.calendar.listfields'));
         }
 
         return array('data' => $array);
