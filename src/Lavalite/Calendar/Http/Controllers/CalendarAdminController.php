@@ -2,24 +2,22 @@
 
 namespace Lavalite\Calendar\Http\Controllers;
 
-use Former;
-use Response;
 use App\Http\Controllers\AdminController as AdminController;
-
+use Former;
 use Lavalite\Calendar\Http\Requests\CalendarRequest;
 use Lavalite\Calendar\Interfaces\CalendarRepositoryInterface;
+use Response;
 
 /**
  *
- * @package Calendars
  */
-
 class CalendarAdminController extends AdminController
 {
-
     /**
-     * Initialize calendar controller
+     * Initialize calendar controller.
+     *
      * @param type CalendarRepositoryInterface $calendar
+     *
      * @return type
      */
     public function __construct(CalendarRepositoryInterface $calendar)
@@ -37,8 +35,8 @@ class CalendarAdminController extends AdminController
     {
         $this->theme->prependTitle(trans('calendar::calendar.names').' :: ');
 
-        $this->theme->asset()->add('fullcalendar',            'packages/fullcalendar/fullcalendar.min.css');
-        $this->theme->asset()->container('extra')->add('fullcalendar',            'packages/fullcalendar/fullcalendar.min.js');
+        $this->theme->asset()->add('fullcalendar', 'packages/fullcalendar/fullcalendar.min.css');
+        $this->theme->asset()->container('extra')->add('fullcalendar', 'packages/fullcalendar/fullcalendar.min.js');
 
         return $this->theme->of('calendar::admin.calendar.index')->render();
     }
@@ -46,7 +44,7 @@ class CalendarAdminController extends AdminController
     /**
      * Return list of calendar as json.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -57,14 +55,14 @@ class CalendarAdminController extends AdminController
             $array[$key] = array_only($row, config('package.calendar.calendar.listfields'));
         }
 
-        return array('data' => $array);
+        return ['data' => $array];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int     $id
      *
      * @return Response
      */
@@ -80,7 +78,8 @@ class CalendarAdminController extends AdminController
     /**
      * Show the form for creating a new resource.
      *
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function create(CalendarRequest $request)
@@ -94,7 +93,8 @@ class CalendarAdminController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(CalendarRequest $request)
@@ -109,8 +109,9 @@ class CalendarAdminController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int     $id
+     *
      * @return Response
      */
     public function edit(CalendarRequest $request, $id)
@@ -125,8 +126,9 @@ class CalendarAdminController extends AdminController
     /**
      * Update the specified resource.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int     $id
+     *
      * @return Response
      */
     public function update(CalendarRequest $request, $id)
@@ -141,22 +143,23 @@ class CalendarAdminController extends AdminController
     /**
      * Remove the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy(CalendarRequest $request, $id)
     {
         try {
             $this->model->delete($id);
+
             return Response::json(['message' => 'Calendar deleted sucessfully'.$id, 'type' => 'success', 'title' => 'Success'], 201);
         } catch (Exception $e) {
             return Response::json(['message' => $e->getMessage(), 'type' => 'error', 'title' => 'Error'], 400);
         }
     }
 
-    public function ajaxList($user_id, $category){
-
+    public function ajaxList($user_id, $category)
+    {
         return $this->model->getCalendar($user_id, $category);
     }
-
 }

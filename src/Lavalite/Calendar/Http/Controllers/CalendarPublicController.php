@@ -4,11 +4,11 @@ namespace Lavalite\Calendar\Http\Controllers;
 
 use App\Http\Controllers\PublicController as CMSPublicController;
 
-class PublicController extends CMSPublicController
+class CalendarPublicController extends CMSPublicController
 {
-
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param type \Lavalite\Calendar\Interfaces\CalendarRepositoryInterface $calendar
      *
      * @return type
@@ -20,7 +20,7 @@ class PublicController extends CMSPublicController
     }
 
     /**
-     * Show calendar's list
+     * Show calendar's list.
      *
      * @param string $slug
      *
@@ -34,7 +34,8 @@ class PublicController extends CMSPublicController
     }
 
     /**
-     * Show calendar
+     * Show calendar.
+     *
      * @param string $slug
      *
      * @return response

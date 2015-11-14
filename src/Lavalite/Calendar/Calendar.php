@@ -1,17 +1,18 @@
-<?php namespace Lavalite\Calendar;
+<?php
+
+namespace Lavalite\Calendar;
 
 class Calendar
 {
-
     protected $calendar;
 
     public function __construct(\Lavalite\Calendar\Interfaces\CalendarRepositoryInterface $calendar)
     {
-        $this->calendar     = $calendar;
+        $this->calendar = $calendar;
     }
 
     /**
-     * Display Calendar of the user
+     * Display Calendar of the user.
      *
      * @return void
      *
@@ -19,6 +20,6 @@ class Calendar
      **/
     public function display($view)
     {
-        return view('calendar::admin.calendar.'. $view);
+        return view('calendar::admin.calendar.'.$view);
     }
 }

@@ -1,4 +1,6 @@
-<?php namespace Lavalite\Calendar\Facades;
+<?php
+
+namespace Lavalite\Calendar\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -9,6 +11,8 @@ class Calendar extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'calendar'; }
-
+    protected static function getFacadeAccessor()
+    {
+        return 'calendar';
+    }
 }

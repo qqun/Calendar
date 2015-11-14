@@ -4,8 +4,8 @@ namespace Lavalite\Calendar\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class CalendarServiceProvider extends ServiceProvider {
-
+class CalendarServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -26,7 +26,7 @@ class CalendarServiceProvider extends ServiceProvider {
         $this->publishResources();
         $this->publishMigrations();
 
-        include __DIR__ . '/../Http/routes.php';
+        include __DIR__.'/../Http/routes.php';
     }
 
     /**
@@ -44,7 +44,6 @@ class CalendarServiceProvider extends ServiceProvider {
             'Lavalite\\Calendar\\Interfaces\\CalendarRepositoryInterface',
             'Lavalite\\Calendar\\Repositories\\Eloquent\\CalendarRepository'
         );
-
     }
 
     /**
@@ -54,30 +53,27 @@ class CalendarServiceProvider extends ServiceProvider {
      */
     public function provides()
     {
-        return array('calendar');
+        return ['calendar'];
     }
 
     /**
      * Publish config, views.
      *
-     * @return  void
+     * @return void
      */
     private function publishResources()
     {
         $this->publishes([__DIR__.'/../../../../config/config.php' => config_path('package/calendar.php')], 'config');
-
     }
 
     /**
      * Publish migration and seeds.
      *
-     * @return  void
+     * @return void
      */
     private function publishMigrations()
     {
         $this->publishes([__DIR__.'/../../../../database/migrations/' => base_path('database/migrations')], 'migrations');
-        $this->publishes([__DIR__.'/../../../../database/seeds/' => base_path('database/seeds')], 'seeds');
+        $this->publishes([__DIR__.'/../../../../database/seeds/'      => base_path('database/seeds')], 'seeds');
     }
-
-
 }
