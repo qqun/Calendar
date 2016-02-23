@@ -3,7 +3,7 @@
 namespace Lavalite\Calendar\Http\Requests;
 
 use App\Http\Requests\Request;
-use User;
+use Gate;
 
 class CalendarRequest extends Request
 {
@@ -14,23 +14,29 @@ class CalendarRequest extends Request
      */
     public function authorize(\Illuminate\Http\Request $request)
     {
+        $calendar = $this->route('calendar');
+        // Determine if the user is authorized to access calendar module,
+        if (is_null($calendar)) {
+            return $request->user()->canDo('calendar.calendar.view');
+        }
+
         // Determine if the user is authorized to create an entry,
         if ($request->isMethod('POST') || $request->is('*/create')) {
-            return User::can('calendar.calendar.create');
+            return Gate::allows('create', $calendar);
         }
 
         // Determine if the user is authorized to update an entry,
         if ($request->isMethod('PUT') || $request->isMethod('PATCH') || $request->is('*/edit')) {
-            return User::can('calendar.calendar.edit');
+            return Gate::allows('update', $calendar);
         }
 
         // Determine if the user is authorized to delete an entry,
         if ($request->isMethod('DELETE')) {
-            return User::can('calendar.calendar.delete');
+            return Gate::allows('delete', $calendar);
         }
 
         // Determine if the user is authorized to view the module.
-        return User::can('calendar.calendar.view');
+        return Gate::allows('view', $calendar);
     }
 
     /**
@@ -43,14 +49,12 @@ class CalendarRequest extends Request
         // validation rule for create request.
         if ($request->isMethod('POST')) {
             return [
-                'name' => 'required',
             ];
         }
 
         // Validation rule for update request.
         if ($request->isMethod('PUT') || $request->isMethod('PATCH')) {
             return [
-                'name' => 'required',
             ];
         }
 

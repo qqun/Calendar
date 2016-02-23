@@ -1,9 +1,9 @@
 <div class="box-header with-border">
     <h3 class="box-title"> New Calendar </h3>
     <div class="box-tools pull-right">
-        <button type="button" class="btn btn-primary btn-sm" id="btn-save"><i class="fa fa-floppy-o"></i> Save</button>
-        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" id="btn-cancel"><i class="fa fa-times-circle"></i> Cancel</button>
-        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      <button type="button" class="btn btn-primary btn-sm" data-action='CREATE' data-form='#create-calendar-calendar'  data-load-to='#entry-calendar' data-datatable='#main-list'><i class="fa fa-floppy-o"></i> {{ trans('cms.save') }}</button>
+        <button type="button" class="btn btn-default btn-sm" data-action='CANCEL' data-load-to='#entry-calendar' data-href='{{Trans::to('admin/calendar/calendar/0')}}'><i class="fa fa-times-circle"></i> {{ trans('cms.cancel') }}</button>
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
     </div>
 </div>
 <div class="box-body" >
@@ -12,7 +12,7 @@
         <ul class="nav nav-tabs primary">
             <li class="active"><a href="#details" data-toggle="tab">Calendar</a></li>
         </ul>
-        {!!Former::vertical_open()
+        {!!Form::vertical_open()
         ->id('create-calendar-calendar')
         ->method('POST')
         ->files('true')
@@ -22,48 +22,9 @@
                 @include('calendar::admin.calendar.partial.entry')
             </div>
         </div>
-    {!! Former::close() !!}
+    {!! Form::close() !!}
     </div>
 </div>
 <div class="box-footer" >
     &nbsp;
 </div>
-<script type="text/javascript">
-(function ($) {
-    $('#btn-save').click(function(){
-        $('#create-calendar-calendar').submit();
-    });
-    $('#btn-cancel').click(function(){
-        $('#entry-calendar').load('{{URL::to('admin/calendar/calendar/0')}}');
-    });
-    $('#create-calendar-calendar')
-    .submit( function( e ) {
-        if($('#create-calendar-calendar').valid() == false) {
-            toastr.error('Unprocessable entry.', 'Warning');
-            return false;
-        }
-        var url  = $(this).attr('action');
-        var formData = new FormData( this );
-
-        $.ajax( {
-            url: url,
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            beforeSend:function()
-            {
-            },
-            success:function(data, textStatus, jqXHR)
-            {
-                $('#main-list').DataTable().ajax.reload( null, false );
-                $('#entry-calendar').load('{{URL::to('admin/calendar/calendar')}}/' + data.id);
-            },
-            error: function(jqXHR, textStatus, errorThrown)
-            {
-            }
-        });
-        e.preventDefault();
-    });
-}(jQuery));
-</script>
