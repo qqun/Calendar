@@ -1,6 +1,6 @@
 <?php
 
-namespace Lavalite\Calendar\Repositories\Presenter;
+namespace Lavalite\Calendar\Repositories\Criteria;
 
 use Litepie\Contracts\Database\Repository;
 use Litepie\Contracts\Database\Criteria;
@@ -9,7 +9,7 @@ class UserCriteria implements Criteria {
 
     public function apply($model, Repository $repository)
     {
-        $model = $model->where('user_id','=', \Auth::user()->id );
+        $model = $model->where('user_id','=', user_id() );
         return $model;
     }
 }
