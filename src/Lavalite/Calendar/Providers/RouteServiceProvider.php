@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
         if (Request::is('*/admin/calendar/*')) {
             $router->bind('calendar', function ($id) {
                 $calendar = $this->app->make('\Lavalite\Calendar\Interfaces\CalendarRepositoryInterface');
-                return $calendar->find($id);
+                return $calendar->findOrNew($id);
             });
         }
     }

@@ -1,18 +1,14 @@
 <?php
 
-Route::group(
-[
-'prefix' => Trans::setLocale().'/admin/calendar'
-],
-function () {
+// Admin routes for module
+Route::group(['prefix' => trans_setlocale().'/admin/calendar', 'middleware' => ['web', 'auth.role:admin']], function () {
     Route::resource('calendar', 'CalendarAdminController');
-    Route::get('/calendar/ajax/list', 'CalendarAdminController@calendarList');
+    Route::get('calendar/ajax/list', 'CalendarAdminController@calendarList');
 });
 
-Route::get('calendar', 'CalendarPublicController@list');
-Route::get('calendar/{slug?}', 'CalendarPublicController@details');
 
-
-
-
-
+// Public routes for module
+Route::group(['prefix' => trans_setlocale(), 'middleware' => ['web']], function () {
+	Route::get('calendar', 'CalendarPublicController@list');
+	Route::get('calendar/{slug?}', 'CalendarPublicController@details');
+});
