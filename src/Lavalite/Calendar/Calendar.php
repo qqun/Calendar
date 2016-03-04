@@ -11,6 +11,18 @@ class Calendar
         $this->calendar = $calendar;
     }
 
+     /**
+    * Returns count of calendar.
+    *
+    * @param array $filter
+    *
+    * @return int
+    */
+    public function count()
+    {
+        return  $this->calendar->getCount();
+    }
+
     /**
      * Display Calendar of the user.
      *
@@ -21,5 +33,10 @@ class Calendar
     public function display($view)
     {
         return view('calendar::admin.calendar.'.$view);
+    }
+
+     public function LatestEvents()
+    {
+        return  $this->calendar->LatestEvents();
     }
 }
