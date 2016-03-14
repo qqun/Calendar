@@ -1,4 +1,4 @@
-<ul class="dropdown-menu">
+<ul class="dropdown-menu notification">
   <li class="header">   You have {!!count(Calendar::latestEvents())!!} events</li>
   <li>
     <!-- inner menu: contains the actual data -->
@@ -6,7 +6,7 @@
     <ul class="menu" style="overflow: hidden; width: 100%; height: 200px;">
       @forelse(Calendar::latestEvents() as $key => $value)
               <li>
-                  <a href="{!!URL::to('/admin/calendar/calendar')!!}">
+                  <a href="{!!trans_url('/admin/calendar/calendar')!!}">
                       <div class="pull-left">
                           <img src="https://placeimg.com/80/80/people" class="img-circle img-responsive" alt="User Image" />
                       </div>
@@ -15,7 +15,7 @@
                           <small>
                               <i class="fa fa-clock-o">
                               </i>
-                              {!! humanTiming(strtotime(@$value['created_at'])) !!} ago
+                            <time class="timeago" datetime="{!!@$value['created_at']!!}"></time>
                           </small>
                       </h4>
                       <p>
@@ -28,5 +28,5 @@
       @endif
     </ul><div class="slimScrollBar" style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; background: rgb(0, 0, 0);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
   </li>
-  <li class="footer"><a href="/admin/calendar/calendar">View all</a></li>
+  <li class="footer"><a href="{{trans_url('/admin/calendar/calendar')}}">View all</a></li>
 </ul>
