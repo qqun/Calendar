@@ -3,9 +3,8 @@
 namespace Lavalite\Calendar\Http\Requests;
 
 use App\Http\Requests\Request;
-use Gate;
 
-class CalendarRequest extends Request
+class CalendarAdminWebRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,28 +14,29 @@ class CalendarRequest extends Request
     public function authorize(\Illuminate\Http\Request $request)
     {
         $calendar = $this->route('calendar');
-        // Determine if the user is authorized to access calendar module,
+
+// Determine if the user is authorized to access calendar module,
         if (is_null($calendar)) {
-            return $request->user()->canDo('calendar.calendar.view');
+            return $request->user('admin.web')->canDo('calendar.calendar.view');
         }
 
-        // Determine if the user is authorized to create an entry,
+// Determine if the user is authorized to create an entry,
         if ($request->isMethod('POST') || $request->is('*/create')) {
-            return Gate::allows('create', $calendar);
+            return $request->user('admin.web')->can('create', $calendar);
         }
 
-        // Determine if the user is authorized to update an entry,
+// Determine if the user is authorized to update an entry,
         if ($request->isMethod('PUT') || $request->isMethod('PATCH') || $request->is('*/edit')) {
-            return Gate::allows('update', $calendar);
+            return $request->user('admin.web')->can('update', $calendar);
         }
 
-        // Determine if the user is authorized to delete an entry,
+// Determine if the user is authorized to delete an entry,
         if ($request->isMethod('DELETE')) {
-            return Gate::allows('delete', $calendar);
+            return $request->user('admin.web')->can('delete', $calendar);
         }
 
         // Determine if the user is authorized to view the module.
-        return Gate::allows('view', $calendar);
+        return $request->user('admin.web')->can('view', $calendar);
     }
 
     /**
@@ -46,13 +46,14 @@ class CalendarRequest extends Request
      */
     public function rules(\Illuminate\Http\Request $request)
     {
-        // validation rule for create request.
+
+// validation rule for create request.
         if ($request->isMethod('POST')) {
             return [
             ];
         }
 
-        // Validation rule for update request.
+// Validation rule for update request.
         if ($request->isMethod('PUT') || $request->isMethod('PATCH')) {
             return [
             ];
@@ -63,4 +64,5 @@ class CalendarRequest extends Request
 
         ];
     }
+
 }

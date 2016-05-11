@@ -4,7 +4,7 @@ namespace Lavalite\Calendar\Http\Controllers;
 
 use App\Http\Controllers\AdminController as AdminController;
 use Form;
-use Lavalite\Calendar\Http\Requests\CalendarRequest;
+use Lavalite\Calendar\Http\Requests\CalendarAdminWebRequest;
 use Lavalite\Calendar\Interfaces\CalendarRepositoryInterface;
 use Lavalite\Calendar\Models\Calendar;
 
@@ -31,7 +31,7 @@ class CalendarAdminController extends AdminController
      *
      * @return Response
      */
-    public function index(CalendarRequest $request)
+    public function index(CalendarAdminWebRequest $request)
     {
         $this->theme->asset()->add('fullcalendar', 'packages/fullcalendar/fullcalendar.min.css');
         $this->theme->asset()->container('extra')->add('fullcalendar', 'packages/fullcalendar/fullcalendar.min.js');
@@ -39,19 +39,17 @@ class CalendarAdminController extends AdminController
         $this->theme->asset()->container('extra')->add('icheckjs', 'packages/icheck/js/icheck.min.js');
         //$calendars  = $this->model->setPresenter('\\Lavalite\\Calendar\\Repositories\\Presenter\\CalendarListPresenter')->paginate(NULL, ['*']);
         $calendars = $this->model->getCalendars();
-        $this   ->theme->prependTitle(trans('calendar::calendar.names').' :: ');
-        $view   = $this->theme->of('calendar::admin.calendar.index', compact('calendars'))->render();
+        $this->theme->prependTitle(trans('calendar::calendar.names') . ' :: ');
+        $view = $this->theme->of('calendar::admin.calendar.index', compact('calendars'))->render();
 
-        $this->responseCode = 200;
+        $this->responseCode    = 200;
         $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Calendar']);
-    /*        $this->responseData = $calendars['data'];
-            $this->responseMeta = $calendars['meta'];*/
-        $this->responseView = $view;
+        /*        $this->responseData = $calendars['data'];
+        $this->responseMeta = $calendars['meta'];*/
+        $this->responseView     = $view;
         $this->responseRedirect = '';
         return $this->respond($request);
     }
-
- 
 
     /**
      * Display the specified resource.
@@ -61,23 +59,24 @@ class CalendarAdminController extends AdminController
      *
      * @return Response
      */
-    public function show(CalendarRequest $request,Calendar $calendar)
+    public function show(CalendarAdminWebRequest $request, Calendar $calendar)
     {
         $calendars = $this->model->getCalendars();
-       if (!$calendar->exists) {
-            $this->responseCode = 404;
+
+        if (!$calendar->exists) {
+            $this->responseCode    = 404;
             $this->responseMessage = trans('messages.success.notfound', ['Module' => 'Calendar']);
-            $this->responseData = $calendar;
-            $this->responseView = view('calendar::admin.calendar.new');
-            return $this -> respond($request);
+            $this->responseData    = $calendar;
+            $this->responseView    = view('calendar::admin.calendar.new');
+            return $this->respond($request);
         }
 
         Form::populate($calendar);
-        $this->responseCode = 200;
+        $this->responseCode    = 200;
         $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Calendar']);
-        $this->responseData = $calendar;
-        $this->responseView = view('calendar::admin.calendar.show', compact('calendars'));
-        return $this -> respond($request);
+        $this->responseData    = $calendar;
+        $this->responseView    = view('calendar::admin.calendar.show', compact('calendars'));
+        return $this->respond($request);
     }
 
     /**
@@ -87,18 +86,18 @@ class CalendarAdminController extends AdminController
      *
      * @return Response
      */
-    public function create(CalendarRequest $request)
+    public function create(CalendarAdminWebRequest $request)
     {
-       
+
         $calendar = $this->model->newInstance([]);
 
         Form::populate($calendar);
 
-        $this->responseCode = 200;
+        $this->responseCode    = 200;
         $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Calendar']);
-        $this->responseData = $calendar;
-        $this->responseView = view('calendar::admin.calendar.create', compact('calendar'));
-        return $this -> respond($request);
+        $this->responseData    = $calendar;
+        $this->responseView    = view('calendar::admin.calendar.create', compact('calendar'));
+        return $this->respond($request);
     }
 
     /**
@@ -108,27 +107,28 @@ class CalendarAdminController extends AdminController
      *
      * @return Response
      */
-    public function store(CalendarRequest $request)
+    public function store(CalendarAdminWebRequest $request)
     {
-       try {
+        try {
             $attributes = $request->all();
-            
+
             $calendar = $this->model->create($attributes);
 
-            $this->responseCode = 201;
-            $this->responseMessage = trans('messages.success.created', ['Module' => 'Calendar']);
-            $this->responseData = $calendar;
-            $this->responseMeta = '';
+            $this->responseCode     = 201;
+            $this->responseMessage  = trans('messages.success.created', ['Module' => 'Calendar']);
+            $this->responseData     = $calendar;
+            $this->responseMeta     = '';
             $this->responseRedirect = trans_url('/admin/calendar/calendar');
             // $this->responseView = view('calendar::admin.calendar.create', compact('calendar'));
 
-            return $this -> respond($request);
+            return $this->respond($request);
 
         } catch (Exception $e) {
-            $this->responseCode = 400;
+            $this->responseCode    = 400;
             $this->responseMessage = $e->getMessage();
-            return $this -> respond($request);
+            return $this->respond($request);
         }
+
     }
 
     /**
@@ -139,16 +139,16 @@ class CalendarAdminController extends AdminController
      *
      * @return Response
      */
-    
-    public function edit(CalendarRequest $request, Calendar $calendar)
+
+    public function edit(CalendarAdminWebRequest $request, Calendar $calendar)
     {
         Form::populate($calendar);
-        $this->responseCode = 200;
+        $this->responseCode    = 200;
         $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Calendar']);
-        $this->responseData = $calendar;
-        $this->responseView = view('calendar::admin.calendar.edit', compact('calendar'));
+        $this->responseData    = $calendar;
+        $this->responseView    = view('calendar::admin.calendar.edit', compact('calendar'));
 
-        return $this -> respond($request);
+        return $this->respond($request);
     }
 
     /**
@@ -159,32 +159,35 @@ class CalendarAdminController extends AdminController
      *
      * @return Response
      */
-    public function update(CalendarRequest $request, Calendar $calendar)
+    public function update(CalendarAdminWebRequest $request, Calendar $calendar)
     {
 
-         try {
+        try {
             // $attributes = $request->all();
             parse_str($request->get('data'), $attributes);
-            if (isset($attributes['status']) && $attributes['status'] == 'Both')
-                $calendar -> create($attributes);
-            else
-                $calendar -> update($attributes);
 
-            $this->responseCode = 204;
-            $this->responseMessage = trans('messages.success.updated', ['Module' => 'Calendar']);
-            $this->responseData = $calendar;
-            $this->responseRedirect = trans_url('/admin/calendar/calendar/'.$calendar->getRouteKey());
+            if (isset($attributes['status']) && $attributes['status'] == 'Both') {
+                $calendar->create($attributes);
+            } else {
+                $calendar->update($attributes);
+            }
 
-            return $this -> respond($request);
+            $this->responseCode     = 204;
+            $this->responseMessage  = trans('messages.success.updated', ['Module' => 'Calendar']);
+            $this->responseData     = $calendar;
+            $this->responseRedirect = trans_url('/admin/calendar/calendar/' . $calendar->getRouteKey());
+
+            return $this->respond($request);
 
         } catch (Exception $e) {
 
-            $this->responseCode = 400;
-            $this->responseMessage = $e->getMessage();
-            $this->responseRedirect = trans_url('/admin/calendar/calendar/'.$calendar->getRouteKey());
+            $this->responseCode     = 400;
+            $this->responseMessage  = $e->getMessage();
+            $this->responseRedirect = trans_url('/admin/calendar/calendar/' . $calendar->getRouteKey());
 
-            return $this -> respond($request);
+            return $this->respond($request);
         }
+
     }
 
     /**
@@ -194,28 +197,30 @@ class CalendarAdminController extends AdminController
      *
      * @return Response
      */
-    public function destroy(CalendarRequest $request, Calendar $calendar)
-    {  try {
+    public function destroy(CalendarAdminWebRequest $request, Calendar $calendar)
+    {
+        try {
 
             $t = $calendar->delete();
 
-            $this->responseCode = 202;
-            $this->responseMessage = trans('messages.success.deleted', ['Module' => 'Calendar']);
-            $this->responseData = $calendar;
-            $this->responseMeta = '';
+            $this->responseCode     = 202;
+            $this->responseMessage  = trans('messages.success.deleted', ['Module' => 'Calendar']);
+            $this->responseData     = $calendar;
+            $this->responseMeta     = '';
             $this->responseRedirect = trans_url('/admin/calendar/calendar/0');
 
-            return $this -> respond($request);
+            return $this->respond($request);
 
         } catch (Exception $e) {
 
-            $this->responseCode = 400;
-            $this->responseMessage = $e->getMessage();
-            $this->responseRedirect = trans_url('/admin/calendar/calendar/'.$calendar->getRouteKey());
+            $this->responseCode     = 400;
+            $this->responseMessage  = $e->getMessage();
+            $this->responseRedirect = trans_url('/admin/calendar/calendar/' . $calendar->getRouteKey());
 
-            return $this -> respond($request);
+            return $this->respond($request);
 
         }
+
     }
 
     public function ajaxList($user_id, $category)
@@ -227,4 +232,5 @@ class CalendarAdminController extends AdminController
     {
         return $this->model->getCalendarList();
     }
+
 }
