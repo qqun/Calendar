@@ -2,9 +2,9 @@
 
 namespace Lavalite\Calendar\Http\Controllers;
 
-use App\Http\Controllers\PublicController as CMSPublicController;
+use App\Http\Controllers\PublicWebController as CMSPublicController;
 
-class CalendarPublicController extends CMSPublicController
+class CalendarPublicWebController extends CMSPublicController
 {
     /**
      * Constructor.

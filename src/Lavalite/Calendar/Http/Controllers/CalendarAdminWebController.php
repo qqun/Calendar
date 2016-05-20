@@ -2,7 +2,7 @@
 
 namespace Lavalite\Calendar\Http\Controllers;
 
-use App\Http\Controllers\AdminController as AdminController;
+use App\Http\Controllers\AdminWebController as AdminController;
 use Form;
 use Lavalite\Calendar\Http\Requests\CalendarAdminWebRequest;
 use Lavalite\Calendar\Interfaces\CalendarRepositoryInterface;
@@ -11,7 +11,7 @@ use Lavalite\Calendar\Models\Calendar;
 /**
  *
  */
-class CalendarAdminController extends AdminController
+class CalendarAdminWebController extends AdminController
 {
     /**
      * Initialize calendar controller.
@@ -40,15 +40,8 @@ class CalendarAdminController extends AdminController
         //$calendars  = $this->model->setPresenter('\\Lavalite\\Calendar\\Repositories\\Presenter\\CalendarListPresenter')->paginate(NULL, ['*']);
         $calendars = $this->model->getCalendars();
         $this->theme->prependTitle(trans('calendar::calendar.names') . ' :: ');
-        $view = $this->theme->of('calendar::admin.calendar.index', compact('calendars'))->render();
+        return $this->theme->of('calendar::admin.calendar.index', compact('calendars'))->render();
 
-        $this->responseCode    = 200;
-        $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Calendar']);
-        /*        $this->responseData = $calendars['data'];
-        $this->responseMeta = $calendars['meta'];*/
-        $this->responseView     = $view;
-        $this->responseRedirect = '';
-        return $this->respond($request);
     }
 
     /**

@@ -2,9 +2,10 @@
 
 namespace Lavalite\Calendar\Repositories\Presenter;
 
-use Litepie\Database\Presenter\FractalPresenter;
+use Litepie\Repository\Presenter\FractalPresenter;
 
-class CalendarShowPresenter extends FractalPresenter {
+class CalendarShowPresenter extends FractalPresenter
+{
 
     /**
      * Prepare data to present
