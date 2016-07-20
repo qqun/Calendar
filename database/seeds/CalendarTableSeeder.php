@@ -1,8 +1,5 @@
 <?php
 
-namespace Lavalite\Calendar;
-
-use DB;
 use Illuminate\Database\Seeder;
 
 class CalendarTableSeeder extends Seeder
@@ -12,21 +9,21 @@ class CalendarTableSeeder extends Seeder
         DB::table('calendars')->insert([
             // Uncomment  and edit this section for entering value to calendar table.
             /*
-            array(
-               "id"        => "Id",
-               "user_id"        => "User id",
-               "category_id"        => "Category id",
-               "start"        => "Start",
-               "end"        => "End",
-               "location"        => "Location",
-               "title"        => "Title",
-               "details"        => "Details",
-               "created_by"        => "Created by",
-               "created_at"        => "Created at",
-               "updated_at"        => "Updated at",
-               "deleted_at"        => "Deleted at",
-            ),
-            */
+        array(
+        "id"        => "Id",
+        "user_id"        => "User id",
+        "category_id"        => "Category id",
+        "start"        => "Start",
+        "end"        => "End",
+        "location"        => "Location",
+        "title"        => "Title",
+        "details"        => "Details",
+        "created_by"        => "Created by",
+        "created_at"        => "Created at",
+        "updated_at"        => "Updated at",
+        "deleted_at"        => "Deleted at",
+        ),
+         */
 
         ]);
 
@@ -52,13 +49,13 @@ class CalendarTableSeeder extends Seeder
         DB::table('settings')->insert([
             // Uncomment  and edit this section for entering value to settings table.
             /*
-            array(
-                'key'      => 'calendar.calendar.key',
-                'name'     => 'Some name',
-                'value'    => 'Some value',
-                'type'     => 'Default',
-            ),
-            */
+        array(
+        'key'      => 'calendar.calendar.key',
+        'name'     => 'Some name',
+        'value'    => 'Some value',
+        'type'     => 'Default',
+        ),
+         */
         ]);
     }
 }
