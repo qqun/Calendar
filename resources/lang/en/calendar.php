@@ -2,44 +2,63 @@
 
 return [
 
-    'options'  => [
+    /**
+     * Singlular and plural name of the module
+     */
+    'name'          => 'Calendar',
+    'names'         => 'Calendars',
 
+    /**
+     * Options for select/radio/check.
+     */
+    'options'       => [
+            'status'              => ['Draft','Both','Calendar'],
     ],
 
-    'placeholder' => [
-
-       'id'          => 'Enter Id',
-'user_id'            => 'Enter User id',
-'category_id'        => 'Enter Category id',
-'start'              => 'Enter Start',
-'end'                => 'Enter End',
-'location'           => 'Enter Location',
-'title'              => 'Enter Title',
-'details'            => 'Enter Details',
-'created_by'         => 'Enter Created by',
-'created_at'         => 'Enter Created at',
-'updated_at'         => 'Enter Updated at',
-'deleted_at'         => 'Enter Deleted at',
-
+    /**
+     * Placeholder for inputs
+     */
+    'placeholder'   => [
+        'category_id'                => 'Please enter category_id',
+        'status'                     => 'Please enter status',
+        'start'                      => 'Please enter start',
+        'end'                        => 'Please enter end',
+        'location'                   => 'Please enter location',
+        'color'                      => 'Please enter color',
+        'title'                      => 'Please enter title',
+        'details'                    => 'Please enter details',
+        'created_by'                 => 'Please enter created_by',
     ],
 
-    'label' => [
-
-        'id'         => 'Id',
-'user_id'            => 'User id',
-'category_id'        => 'Category id',
-'start'              => 'Start',
-'end'                => 'End',
-'location'           => 'Location',
-'title'              => 'Title',
-'details'            => 'Details',
-'created_by'         => 'Created by',
-'created_at'         => 'Created at',
-'updated_at'         => 'Updated at',
-'deleted_at'         => 'Deleted at',
+    /**
+     * Labels for inputs.
+     */
+    'label'         => [
+        'category_id'                => 'Category id',
+        'status'                     => 'Status',
+        'start'                      => 'Start',
+        'end'                        => 'End',
+        'location'                   => 'Location',
+        'color'                      => 'Color',
+        'title'                      => 'Title',
+        'details'                    => 'Details',
+        'created_by'                 => 'Created by',
+        'status'                     => 'Status',
+        'created_at'                 => 'Created at',
+        'updated_at'                 => 'Updated at',
     ],
 
-    'name'            => 'Calendar',
-    'names'           => 'Calendars',
+    /**
+     * Tab labels
+     */
+    'tab'           => [
+        'name'  => 'Name',
+    ],
 
+    /**
+     * Texts  for the module
+     */
+    'text'          => [
+        'preview' => 'Click on the below list for preview',
+    ],
 ];

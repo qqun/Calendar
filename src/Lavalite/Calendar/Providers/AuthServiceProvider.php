@@ -13,6 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        // Bind Calendar policy
         \Lavalite\Calendar\Models\Calendar::class => \Lavalite\Calendar\Policies\CalendarPolicy::class,
     ];
 

@@ -2,9 +2,9 @@ This is a Laravel 5 package that provides calendar management facility for laval
 
 ## Installation
 
-Begin by installing this package through Composer. Edit your project's `composer.json` file to require `litecms/calendar`.
+Begin by installing this package through Composer. Edit your project's `composer.json` file to require `lavalite/calendar`.
 
-    "litecms/calendar": "dev-master"
+    "lavalite/calendar": "dev-master"
 
 Next, update Composer from the Terminal:
 
@@ -40,8 +40,7 @@ Language
 
 Views public and admin
 
-    php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="view-public"
-    php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="view-admin"
+    php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="view"
 
 Publish admin views only if it is necessary.
 

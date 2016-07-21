@@ -3,7 +3,7 @@
 namespace Lavalite\Calendar\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Lavalite\Calendar\Models\Calendar;
+
 class CalendarServiceProvider extends ServiceProvider
 {
     /**
@@ -20,11 +20,16 @@ class CalendarServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../../../../resources/views', 'calendar');
+        // Load view
+        $this->loadViewsFrom(__DIR__ . '/../../../../resources/views', 'calendar');
 
-        $this->loadTranslationsFrom(__DIR__.'/../../../../resources/lang', 'calendar');
+        // Load translation
+        $this->loadTranslationsFrom(__DIR__ . '/../../../../resources/lang', 'calendar');
 
+        // Call pblish redources function
         $this->publishResources();
+
+        include __DIR__ . '/../Http/routes.php';
     }
 
     /**
@@ -34,10 +39,12 @@ class CalendarServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         $this->app->bind('calendar', function ($app) {
+        // Bind facade
+        $this->app->bind('calendar', function ($app) {
             return $this->app->make('Lavalite\Calendar\Calendar');
         });
 
+        // Bind Calendar to repository
         $this->app->bind(
             \Lavalite\Calendar\Interfaces\CalendarRepositoryInterface::class,
             \Lavalite\Calendar\Repositories\Eloquent\CalendarRepository::class
@@ -59,30 +66,28 @@ class CalendarServiceProvider extends ServiceProvider
     }
 
     /**
-     * Publish config, views.
+     * Publish resources.
      *
      * @return void
      */
     private function publishResources()
     {
-         // Publish configuration file
-        $this->publishes([__DIR__.'/../../../../config/config.php' => config_path('package/calendar.php')], 'config');
-
-        // Publish public view
-        $this->publishes([__DIR__.'/../../../../resources/views/public' => base_path('resources/views/vendor/calendar/public')], 'view-public');
+        // Publish configuration file
+        $this->publishes([__DIR__ . '/../../../../config/config.php' => config_path('package/calendar.php')], 'config');
 
         // Publish admin view
-        $this->publishes([__DIR__.'/../../../../resources/views/admin' => base_path('resources/views/vendor/calendar/admin')], 'view-admin');
+        $this->publishes([__DIR__ . '/../../../../resources/views' => base_path('resources/views/vendor/calendar')], 'view');
 
         // Publish language files
-        $this->publishes([__DIR__.'/../../../../resources/lang' => base_path('resources/lang/vendor/calendar')], 'lang');
+        $this->publishes([__DIR__ . '/../../../../resources/lang' => base_path('resources/lang/vendor/calendar')], 'lang');
 
         // Publish migrations
-        $this->publishes([__DIR__.'/../../../../database/migrations' => base_path('database/migrations')], 'migrations');
+        $this->publishes([__DIR__ . '/../../../../database/migrations/' => base_path('database/migrations')], 'migrations');
 
         // Publish seeds
-        $this->publishes([__DIR__.'/../../../../database/seeds' => base_path('database/seeds')], 'seeds');
-    }
+        $this->publishes([__DIR__ . '/../../../../database/seeds/' => base_path('database/seeds')], 'seeds');
 
-   
+        // Publish public
+        $this->publishes([__DIR__ . '/../../../../public/' => public_path('/')], 'uploads');
+    }
 }

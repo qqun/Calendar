@@ -3,20 +3,23 @@
 namespace Lavalite\Calendar\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Litepie\Database\Traits\Slugger;
 use Litepie\Database\Model;
+use Litepie\Database\Traits\Slugger;
 use Litepie\Filer\Traits\Filer;
 use Litepie\Hashids\Traits\Hashids;
-use Litepie\Trans\Traits\Trans;
+use Litepie\Repository\Traits\PresentableTrait;
 use Litepie\Revision\Traits\Revision;
+
 class Calendar extends Model
 {
-    use Filer, SoftDeletes, Hashids, Slugger, Trans, Revision;
+    use Filer, SoftDeletes, Hashids, Slugger, Revision, PresentableTrait;
 
     /**
      * Configuartion for the model.
      *
      * @var array
-    */
-    protected $config = 'package.calendar.calendar';
+     */
+     protected $config = 'package.calendar.calendar';
+
+
 }

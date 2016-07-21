@@ -20,7 +20,7 @@ class CalendarPolicy
      */
     public function view(User $user, Calendar $calendar)
     {
-        if ($user->canDo('calendar.calendar.view')) {
+        if ($user->canDo('calendar.calendar.view') && $user->is('admin')) {
             return true;
         }
 
@@ -50,7 +50,7 @@ class CalendarPolicy
      */
     public function update(User $user, Calendar $calendar)
     {
-        if ($user->canDo('calendar.calendar.update')) {
+        if ($user->canDo('calendar.calendar.update') && $user->is('admin')) {
             return true;
         }
 
@@ -67,7 +67,7 @@ class CalendarPolicy
      */
     public function destroy(User $user, Calendar $calendar)
     {
-        if ($user->canDo('calendar.calendar.delete')) {
+        if ($user->canDo('calendar.calendar.delete') && $user->is('admin')) {
             return true;
         }
 

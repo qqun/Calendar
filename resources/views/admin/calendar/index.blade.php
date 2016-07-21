@@ -41,17 +41,15 @@
                 <!-- the events -->
                 <div id="external-events">
 
-                    @forelse($calendars as $key =>$value)
+                    @forelse($calendars['data'] as $key =>$value)
                     <div class="external-event" style="background-color:{!!@$value['color']!!};" id="{!!@$value['id']!!}">
                         {!!@$value['title']!!}
                     </div>
                     @empty
                     @endif
-                    <div class="checkbox">
-                        <label for="drop-remove">
-                            <input type="checkbox" id="drop-remove"/>
-                            remove after drop
-                        </label>
+                    <div class="checkbox checkbox-danger">
+                        <input type="checkbox" id="drop-remove"/>
+                        <label for="drop-remove">remove after drop</label>                            
                     </div>
                 </div>
             </div>
@@ -66,13 +64,6 @@
             </div>
             <div class="box-body">
                 <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                    <!--
-                        <button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">
-                            Color
-                            <span class="caret">
-                            </span>
-                        </button>
-                    -->
                     <ul class="fc-color-picker" id="color-chooser">
                         <li>
                             <a class="text-aqua" href="#">
@@ -277,18 +268,16 @@ $(function () {
                 }
             },
             eventDrop: function(event, delta, revertFunc) {
-                var formData = 'start='+event.start.format()+'&end='+event.end.format();
+                var formData = 'start='+event.start.format()+'&end='+event.end.format()+'&status='+status;
                 updateEvents(formData,event.id);
             },
             eventResize: function(event, delta, revertFunc) {
-                var formData = 'start='+event.start.format()+'&end='+event.end.format();
+                var formData = 'start='+event.start.format()+'&end='+event.end.format()+'&status='+status;
                 updateEvents(formData,event.id);
             },
     });
         /* ADDING EVENTS */
         var currColor = "#3c8dbc"; //Red by default
-        //Color chooser button
-        var colorChooser = $("#color-chooser-btn");
         $("#color-chooser >li >a").click(function (e) {
             e.preventDefault();
             //Save color
@@ -297,11 +286,12 @@ $(function () {
             $('#add-new-event').css({"background-color": currColor, "border-color": currColor});
         });
         $("#add-new-event").unbind('click').bind('click', function (e) {
-            console.log('123');
         e.preventDefault();
+        
         //Get value and make sure it is not null
         var val = $("input:text[name=title]").val();
-        if (val.length == 0) {
+
+        if ($.trim( val ).length==0) {
         return;
         }
         //Create events
@@ -314,30 +304,7 @@ $(function () {
         $("input:hidden[name=color]").val(currColor);
         $('#create-calendar-calendar').submit();
     });
-    /*$('#create-calendar-calendar').submit( function( e ) {
-        if($('#create-calendar-calendar').valid() == false) {
-            toastr.error('Unprocessable entry.', 'Warning');
-            return false;
-        }
-        $.ajax( {
-            url: $(this).attr('action'),
-            type: 'POST',
-            data: new FormData( this ),
-            processData: false,
-            contentType: false,
-            beforeSend:function()
-            {
-            },
-            success:function(data, textStatus, jqXHR)
-            {
-                console.log(data);
-            },
-            error: function(jqXHR, textStatus, errorThrown)
-            {
-            }
-        });
-        e.preventDefault();
-    });*/
+    
     function updateEvents(formData,id){
 
         $.ajax( {
