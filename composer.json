@@ -1,6 +1,7 @@
 {
     "name": "lavalite/calendar",
-    "description": "Calendar package for Lavalite framework",
+    "description": "Calendar package for lavalite.",
+    "keywords": ["lavalite", "Calendar"],
     "license": "MIT",
     "authors": [
         {

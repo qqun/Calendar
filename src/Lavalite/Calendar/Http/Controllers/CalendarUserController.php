@@ -48,7 +48,10 @@ class CalendarUserController extends BaseController
      */
     public function index(CalendarUserRequest $request)
     {
-        $this->repository;
+        $this->theme->asset()->add('fullcalendar-css', 'packages/fullcalendar/fullcalendar.min.css');
+        $this->theme->asset()->container('footer')->add('jquery-ui', 'packages/jquery-ui/jquery-ui.js');
+        $this->theme->asset()->container('footer')->add('fullcalendar-js', 'packages/fullcalendar/fullcalendar.min.js');
+
         $calendars = $this->repository
             ->pushCriteria(new \Lavalite\Calendar\Repositories\Criteria\CalendarUserCriteria())
             ->pushCriteria(new \Lavalite\Calendar\Repositories\Criteria\CalendarEventCriteria())

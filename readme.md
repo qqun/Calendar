@@ -1,4 +1,4 @@
-This is a Laravel 5 package that provides calendar management facility for lavalite framework.
+This is a Lavalite package that provides calendar management facility for lavalite framework.
 
 ## Installation
 
@@ -28,22 +28,25 @@ Use the below commands for publishing
 Migration and seeds
 
     php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="migrations"
+
     php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="seeds"
 
 Configuration
 
     php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="config"
 
-Language
+Language files
 
     php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="lang"
 
-Views public and admin
+View files
 
-    php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="view"
+    php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="views"
 
-Publish admin views only if it is necessary.
+Public folders
+
+    php artisan vendor:publish --provider="Lavalite\Calendar\Providers\CalendarServiceProvider" --tag="public"
+
 
 ## Usage
-
 

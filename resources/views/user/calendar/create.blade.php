@@ -22,6 +22,7 @@
                 @include('calendar::admin.calendar.partial.entry')
             </div>
         </div>
+   
     {!! Form::close() !!}
     </div>
 </div>

@@ -51,6 +51,9 @@ class CalendarAdminController extends BaseController
      */
     public function index(CalendarAdminRequest $request)
     {
+        $this->theme->asset()->add('fullcalendar-css', 'packages/fullcalendar/fullcalendar.min.css');
+        $this->theme->asset()->container('extra')->add('jquery-ui', 'packages/jquery-ui/jquery-ui.js');
+        $this->theme->asset()->container('extra')->add('fullcalendar-js', 'packages/fullcalendar/fullcalendar.min.js');
 
         $pageLimit = $request->input('pageLimit');
         $calendars = $this->repository
