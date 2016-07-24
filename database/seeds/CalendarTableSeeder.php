@@ -88,7 +88,7 @@ class CalendarTableSeeder extends Seeder
                 'description' => null,
                 'icon'        => 'fa fa-calendar',
                 'target'      => null,
-                'order'       => 1,
+                'order'       => 120,
                 'status'      => 1,
             ],
 
@@ -100,7 +100,7 @@ class CalendarTableSeeder extends Seeder
                 'description' => null,
                 'icon'        => 'icon-calendar',
                 'target'      => null,
-                'order'       => 1,
+                'order'       => 120,
                 'status'      => 1,
             ],
 
