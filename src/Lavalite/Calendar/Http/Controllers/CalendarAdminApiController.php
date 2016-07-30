@@ -99,6 +99,7 @@ class CalendarAdminApiController extends BaseController
         try {
             $attributes             = $request->all();
             $attributes['user_id']  = user_id('admin.api');
+            $attributes['user_type'] = user_type();
             $calendar          = $this->repository->create($attributes);
             $calendar          = $calendar->presenter();
             $calendar['code']  = 2004;

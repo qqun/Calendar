@@ -8,7 +8,7 @@
               <li>
                   <a href="{!!trans_url('/admin/calendar/calendar')!!}">
                       <div class="pull-left">
-                          <img src="https://placeimg.com/80/80/people" class="img-circle img-responsive" alt="User Image" />
+                          <img src="{!!@$value->user->picture!!}" class="img-circle img-responsive" alt="User Image" />
                       </div>
                       <h4>
                           {!!@$value->title!!}

@@ -19,7 +19,7 @@
                           </small>
                       </h4>
                       <p>
-                          {!!date('Y-m-d',strtotime(@$value['start']))!!} - {!!date('Y-m-d',strtotime(@$value['end']))!!}
+                          {!!format_date(@$value['start'])!!} - {!!format_date('Y-m-d',strtotime(@$value['end'])!!}
                       </p>
                   </a>
               </li>

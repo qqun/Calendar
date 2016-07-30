@@ -27,10 +27,10 @@ return [
         'slugs'         => ['slug' => 'title'],
         'dates'         => ['deleted_at'],
         'appends'       => [],
-        'fillable'      => ['user_id', 'category_id', 'status', 'start', 'end', 'location', 'color', 'title', 'details', 'created_by','upload_folder'],
+        'fillable'      => ['user_id', 'user_type', 'category_id', 'status', 'start', 'end', 'location', 'color', 'title', 'details', 'created_by', 'upload_folder'],
         'translate'     => [],
 
-        'upload-folder' => '/uploads/calendar/calendar',
+        'upload_folder' => 'calendar/calendar',
         'uploads'       => [
             'single'   => [],
             'multiple' => [],

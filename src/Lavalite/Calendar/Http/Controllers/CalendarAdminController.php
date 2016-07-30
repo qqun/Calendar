@@ -117,6 +117,7 @@ class CalendarAdminController extends BaseController
         try {
             $attributes = $request->all();
             $attributes['user_id'] = user_id('admin.web');
+            $attributes['user_type'] = user_type();
             $calendar = $this->repository->create($attributes);
 
             return redirect(trans_url('/admin/calendar/calendar'))
@@ -157,12 +158,16 @@ class CalendarAdminController extends BaseController
     public function update(CalendarAdminRequest $request, Calendar $calendar)
     {
         try {
-            
             parse_str($request->get('data'), $attributes);
-            if (isset($attributes['status']) && $attributes['status'] == 'Both')
-                $calendar -> create($attributes);
-            else
-                $calendar -> update($attributes);
+            $status = $attributes['status'];
+            $attributes['user_id'] = user_id("admin.web");
+            $attributes['status'] = 'Calendar';
+
+            if ($status == 'Both') {
+                $calendar->create($attributes);
+            } else {
+                $calendar->update($attributes);
+            }
 
             return response()->json([
                 'message'  => trans('messages.success.updated', ['Module' => trans('calendar::calendar.name')]),

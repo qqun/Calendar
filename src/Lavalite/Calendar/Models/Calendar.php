@@ -9,17 +9,17 @@ use Litepie\Filer\Traits\Filer;
 use Litepie\Hashids\Traits\Hashids;
 use Litepie\Repository\Traits\PresentableTrait;
 use Litepie\Revision\Traits\Revision;
+use Litepie\User\Traits\UserModel;
 
 class Calendar extends Model
 {
-    use Filer, SoftDeletes, Hashids, Slugger, Revision, PresentableTrait;
+    use Filer, SoftDeletes, Hashids, Slugger, Revision, PresentableTrait, UserModel;
 
     /**
      * Configuartion for the model.
      *
      * @var array
      */
-     protected $config = 'package.calendar.calendar';
-
+    protected $config = 'package.calendar.calendar';
 
 }

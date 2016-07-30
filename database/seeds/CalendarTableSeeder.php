@@ -8,6 +8,8 @@ class CalendarTableSeeder extends Seeder
     {
         DB::table('calendars')->insert([
             [
+
+                'user_type'     => 'App\\User',
                 'user_id'       => '1',
                 'category_id'   => null,
                 'status'        => 'Calendar',
@@ -15,16 +17,17 @@ class CalendarTableSeeder extends Seeder
                 'end'           => '2016-07-19 01:00:00',
                 'location'      => null,
                 'color'         => 'rgb(60, 141, 188)',
-                'title'         => 'Adolf Hitler bday',
+                'title'         => 'Board Meeting',
                 'details'       => null,
                 'created_by'    => null,
-                'slug'          => 'adolf-hitler-bday-2',
+                'slug'          => 'board-meeting',
                 'upload_folder' => null,
                 'deleted_at'    => null,
                 'created_at'    => '2016-07-20 08:35:17',
                 'updated_at'    => '2016-07-20 08:38:08',
             ],
             [
+                'user_type'     => 'App\\User',
                 'user_id'       => '1',
                 'category_id'   => null,
                 'status'        => 'Calendar',
@@ -42,6 +45,7 @@ class CalendarTableSeeder extends Seeder
                 'updated_at'    => '2016-07-20 08:38:30',
             ],
             [
+                'user_type'     => 'App\\User',
                 'user_id'       => '1',
                 'category_id'   => null,
                 'status'        => 'Calendar',
@@ -59,6 +63,7 @@ class CalendarTableSeeder extends Seeder
                 'updated_at'    => '2016-07-20 08:37:37',
             ],
             [
+                'user_type'     => 'App\\User',
                 'user_id'       => '1',
                 'category_id'   => null,
                 'status'        => 'Calendar',

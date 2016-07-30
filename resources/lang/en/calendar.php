@@ -16,7 +16,7 @@ return [
      * Options for select/radio/check.
      */
     'options'     => [
-        'status' => ['Draft', 'Both', 'Calendar'],
+        'status' => ['Draft', 'Calendar'],
     ],
 
     /**
