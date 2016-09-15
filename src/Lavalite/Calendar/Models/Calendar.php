@@ -9,7 +9,7 @@ use Litepie\Filer\Traits\Filer;
 use Litepie\Hashids\Traits\Hashids;
 use Litepie\Repository\Traits\PresentableTrait;
 use Litepie\Revision\Traits\Revision;
-use Litepie\User\Traits\UserModel;
+use Litepie\User\Traits\User as UserModel;
 
 class Calendar extends Model
 {

@@ -17,7 +17,7 @@ class CalendarAdminApiController extends BaseController
      *
      * @var string
      */
-    protected $guard = 'admin.api';
+        protected $guard = 'admin.api';
     
     /**
      * Initialize calendar controller.
